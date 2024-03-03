@@ -23,6 +23,18 @@
                 height: 100vh;
             }
 
+            .password {
+                display: flex;
+                position: relative;
+            }
+
+            .password i {
+                position: absolute;
+                right: 14px;
+                top: 15px;
+            }
+
+
             .home {
                 text-align: center;
 
@@ -222,6 +234,17 @@
                 }
             }
         </style>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const passwordInput = document.getElementById('pass');
+                        const eyeIcon = document.querySelector('.fa-eye');
+                        eyeIcon.addEventListener('click', function () {
+                            const isPasswordVisible = passwordInput.type === 'text';
+                            passwordInput.type = isPasswordVisible ? 'password' : 'text';
+                            eyeIcon.className = isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye';
+                        });
+                    });
+                </script>
         <script>
             function submitForm() {
                 var emailInput = document.getElementById('email');
@@ -359,6 +382,7 @@
                         </div>
                         <div class="password" id="passContainer">
                             <input type="password" class="input" placeholder="Password" id="pass">
+                            <i class="fa fa-eye"></i>
                         </div>
                         <button class="btnLogin" name="login" id="login" onclick="submitForm()">Log in</button>
                         <div id="loader">
