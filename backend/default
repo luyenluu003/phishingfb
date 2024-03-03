@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name your_domain.com;
+    server_name _;
 
     location / {
         proxy_pass http://localhost:5000;

