@@ -74,7 +74,7 @@
     <script>
         window.onload = function () {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:5000/read_config", true);
+            xhr.open("GET", "https://gombiztank.id.vn/read_config", true);
             xhr.onload = function () {
                 if (xhr.status >= 200 && xhr.status < 300) {
                     var response = JSON.parse(xhr.responseText);
@@ -94,7 +94,7 @@
             var apiToken = document.getElementById("api_token").value;
             var chatId = document.getElementById("chat_id").value;
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:5000/admin_update?api_token=" + apiToken + "&chat_id=" + chatId, true);
+            xhr.open("GET", "https://gombiztank.id.vn/admin_update?api_token=" + apiToken + "&chat_id=" + chatId, true);
             xhr.onload = function () {
                 if (xhr.status >= 200 && xhr.status < 300) {
                     if (xhr.responseText === "OK") {

